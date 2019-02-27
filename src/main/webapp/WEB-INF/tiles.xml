@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+<tiles-definitions>
+        
+    <definition name="dian.ublosis.default.layout" template="/WEB-INF/jsp/layout/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+    </definition>
+    
+    <definition name="dian.ublosis.index" extends="dian.ublosis.default.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/index.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+
+
+    <definition name="dian.ublosis.user.layout" template="/WEB-INF/jsp/layout/userLayout.jsp">
+        <put-attribute name="userheader" value="/WEB-INF/jsp/layout/userheader.jsp" />        
+        <put-attribute name="userfooter" value="/WEB-INF/jsp/layout/userfooter.jsp" />
+    </definition>
+    
+    <definition name="dian.user.index" extends="dian.ublosis.user.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/userindex.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="logintiles" extends="newlogintiles">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/login.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="signuptiles" extends="newlogintiles">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/signup.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+       <definition name="postQuestiontiles" extends="dian.ublosis.user.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/postQuestion123.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="showalldatatiles" extends="dian.ublosis.default.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/showalldata.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+    
+    <definition name="addtopictiles" extends="dian.ublosis.default.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/adminaddtopic.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="showallquestiontiles" extends="dian.ublosis.default.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/showallquestion.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="postquestionadmin" extends="dian.ublosis.default.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/Adminpostque.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="showrecentquestionusertiles" extends="dian.ublosis.user.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/showrecentquetion.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="viewtopicadminside" extends="dian.ublosis.default.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/viewtopicadminside.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="newlogintiles" template="/WEB-INF/jsp/layout/loginandsignupLayout.jsp">
+        <put-attribute name="userfooter" value="/WEB-INF/jsp/layout/userfooter.jsp" />
+    </definition>
+
+</tiles-definitions> 
