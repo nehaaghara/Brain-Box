@@ -13,7 +13,7 @@
 								<ul class="nav panel-tabs">
                                                                         <li class="active"> <a data-toggle="tab" onclick="window.location.href='${pageContext.servletContext.contextPath}/showrecent'" href="#"><i class="icofont icon-ribbon"></i><span class="hidden-xs">Recent Questions</span></a> 
 									</li>
-									<li> <a data-toggle="tab" href=""><i class="icofont icon-layers"></i><span class="hidden-xs">Popular Responses</span></a> 
+									<li> <a data-toggle="tab" onclick="window.location.href='${pageContext.servletContext.contextPath}/yourquestion'"><i class="icofont icon-layers"></i><span class="hidden-xs">Your Question</span></a> 
 									</li>
 									<li > <a data-toggle="tab" href="#tab3"><i class="icofont icon-global"></i><span class="hidden-xs">Recently Answered</span></a> 
 									</li>

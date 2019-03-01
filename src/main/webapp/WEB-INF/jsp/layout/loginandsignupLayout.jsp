@@ -50,31 +50,8 @@
 	<div class="preloader"><span class="preloader-gif"></span>
 	</div>
 	
-	
-        
-       
-        
         <tiles:insertAttribute name="body" flush="true" />
-	<!-- =-=-=-=-=-=-= HOME =-=-=-=-=-=-= -->
-	<div class="full-section search-section">
-		<div class="search-area container">
-			<h3 class="search-title">Have a Question?</h3>
-			<p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
-			<form autocomplete="off" method="get" class="search-form clearfix" id="search-form">
-				<input type="text" title="* Please enter a search term!" placeholder="Type your search terms here" class="search-term " autocomplete="off">
-				<input type="submit" value="Search" class="search-btn">
-			</form>
-		</div>
-	</div>
-	<!-- =-=-=-=-=-=-= HOME END =-=-=-=-=-=-= -->
-	<!-- =-=-=-=-=-=-= Main Area =-=-=-=-=-=-= -->
-	
-	<!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
-        <!-- start footer-->
-	  <tiles:insertAttribute name="userfooter" />
-	<!-- end footer-->
-          
-          <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
+	 <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
 	<script src="${pageContext.servletContext.contextPath}/webResource/user/js/jquery.min.js"></script>
 	<!-- Bootstrap Core Css  -->
 	<script src="${pageContext.servletContext.contextPath}/webResource/user/js/bootstrap.min.js"></script>

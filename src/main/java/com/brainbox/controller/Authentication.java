@@ -47,13 +47,13 @@ public class Authentication {
     @RequestMapping(value="/loginauthen",method = RequestMethod.GET)
     public ModelAndView login(HttpServletRequest req,HttpServletResponse res)
     {
-        System.out.println("nilesh hingu");
+        
         ModelAndView mv=new ModelAndView();
         String username=req.getParameter("uname");
         String password=req.getParameter("pass");
         
         List<UserTable> lstuser = authService.loginauthenservice(username, password);
-        System.out.println("lstsize"+lstuser.size());
+        
          HttpSession session=req.getSession(true);
          session.setAttribute("lstuser", lstuser);
          

@@ -22,9 +22,9 @@
                             <ul class="nav panel-tabs">
                                 <li class="active"> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/showrecent'" href="#"><i class="icofont icon-ribbon"></i><span class="hidden-xs">Recent Questions</span></a> 
                                 </li>
-                                <li> <a data-toggle="tab" href=""><i class="icofont icon-layers"></i><span class="hidden-xs">Popular Responses</span></a> 
+                                <li> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/yourquestion'"><i class="icofont icon-layers"></i><span class="hidden-xs">Your Question</span></a>
                                 </li>
-                                <li> <a data-toggle="tab" href="#tab3"><i class="icofont icon-global"></i><span class="hidden-xs">Recently Answered</span></a> 
+                                <li> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/youranswer'"><i class="icofont icon-global"></i><span class="hidden-xs">Your Answer</span></a> 
                                 </li>
                                 <li> <a data-toggle="tab" href="#tab4"><i class="icofont icon-linegraph"></i><span class="hidden-xs">No answers</span></a> 
                                 </li>
@@ -75,13 +75,12 @@
 
                                                 </div>
                                                 <form:button class="btn btn-primary btn-lg btn-block">Post Your Answer</form:button>
-                                                    <hr >
-                                                    <div class="questionAnswerScroll" style="background-color: white">
-
+                                                    <hr>
                                                     <%
                                                         Map<String,Object> mapQuestionAnswer = (Map<String,Object>) request.getAttribute("mapQuestionAnswer");
                                                        if(String.valueOf(lstquestion.get(i).getId()).equalsIgnoreCase(String.valueOf(mapQuestionAnswer.get("queID")))){
                                                          List<AnswerTable> lstAnswerTables =(List<AnswerTable>) mapQuestionAnswer.get("answerList");
+<<<<<<< HEAD
                                                            for(AnswerTable answer :lstAnswerTables){%>
                                                     <div class="post">
                                                         <div class="user-block">
@@ -113,21 +112,58 @@
                                                     <hr>
                                                     <% } } %>
                                                 </form:form>
-                                            </div>
-                                            <% } %>
-                                        </div>
-                                    </div>
+=======
+                                                            if(lstAnswerTables.size() > 0){ %>
+                                                               <div class="questionAnswerScroll" style="background-color: white">
+                                                               <%for(AnswerTable answer :lstAnswerTables){%>
+                                                               <div class="post">
+                                                                   <div class="user-block">
+                                                                       <img class="img-circle img-bordered-sm" src="webResource/admin/dist/img/avatar5.png" alt="user image">
+                                                                       <span class="username">
+                                                                           <a href="#" style="font-size: 20px;"><font color="#3c8dbc"><%= answer.getUsertable().getUsername().toUpperCase() %></font></a>
+                                                                       </span>
+                                                                       <span class="description" style="font-size: 12px;">Shared publicly</span>
+                                                                   </div>
+                                                                   <!-- /.user-block -->
+                                                                   <p style="font-size: 16px;">
+                                                                       <font color="black">
+                                                                       <%= answer.getAnswer()%>
+                                                                       </font>
+                                                                   </p>
+                                                                   <% if(answer.isUser()){%>
+                                                                   <ul class="list-inline">
+                                                                       <li><a href="likeanswer/<%= answer.getAid()%>" class="link-black text-sm"><i class="fa fa-thumbs-up margin-r-5" style="color: #bb2026"></i> <%= answer.getNo_of_like()%> Likes</a>
+                                                                       </li>
+                                                                   </ul>
+                                                                   <%
+                                                            }else{
+                                                                   %><ul class="list-inline">
+                                                                       <li><a href="likeanswer/<%= answer.getAid()%>" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> <%= answer.getNo_of_like()%> Likes</a>
+                                                                       </li>
+                                                                   </ul><%    
+                                                               }%>   
+                                                               </div>
+                                                               <hr>
+                                                               <% }%> 
+                                                               </div>
+                                                       <%  } 
+                                                        } %>
+                                                
 
+>>>>>>> 76fadf0827a7766eb97747a49219067bcd50bf4e
+                                            </div>
+                                        </form:form>
+                                    </div>
+                                    <% } %>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
+
                     </div>
                 </div>
 
                 </section>
-
-
             </div>
+                                 
 

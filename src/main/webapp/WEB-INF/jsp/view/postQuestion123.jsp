@@ -4,6 +4,7 @@
     Author     : ITMCS-Java
 --%>
 
+
 <%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@page import="com.brainbox.model.UserTable"%>
 <%@page import="com.brainbox.model.AdminTopic"%>
@@ -57,36 +58,23 @@
               <p>Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. </p>
               <hr>
               <!-- form login -->
-              <form class="margin-top-40" action="postquestion1" method="get">
+              <form action="postquestionbyuser" method="post">
                 <div class="form-group">
                   <label>Question Title</label>
-                  <input type="text" placeholder="Bootstrap Not Working" name="qtitle" class="form-control">
+                  <input  type="text" placeholder="Bootstrap Not Working" name="qtitle" class="form-control"/>
                 </div>
                 <div class="form-group">
                     
                   <label>Category</label>
-                  <select class="questions-category form-control" name="stopic">
+                  <select  class="questions-category form-control" name="stopic">
                       
-                      <option value="0">All Categories</option>
-                    <option value="php">Php</option>
-                    <option value="Html">Html</option>
-                    <option value="Bootstrap">Bootstrap</option>
-                    <option value="Wordpress">Wordpress</option>
-                    <option value="Laravel">Laravel</option>
-                    <option value="Plugins">Plugins</option>
-                    <option value="Routes">Routes</option>
-                    <option value="Css">Css</option>
-                    <option value="Responsive">Responsive</option>
-                    <option value="File Upload">File Upload</option>
-                    <option value="Ajex">Ajax</option>
-                    <option value="Jquery">Jquery</option>
-                    <option value="Featured">Featured</option>
-                    <% List<AdminTopic> lsttopic=(List)request.getAttribute("lsttopic");
+                    
+                    <% List<AdminTopic> lsttopic=(List<AdminTopic>)request.getAttribute("lsttopic");
                         
                     %>
                   <% for(int i=0;i<lsttopic.size();i++) { %>
                   
-                  <option value="<%= lsttopic.get(i).getTopicname() %>"><%= lsttopic.get(i).getTopicname() %></option>
+                  <option value="<%= lsttopic.get(i).getId() %>"><%= lsttopic.get(i).getTopicname() %></option>
                   <% } %>
                   </select>
                 </div>
@@ -98,10 +86,7 @@
                   <textarea cols="12" rows="12" name="qdiscription" placeholder="Post Your Question Details Here....." id="message"  class="form-control"></textarea>
                 </div>
                   
-                   <div class="form-group">
-                  <label>Enter Your Identity you can Enter Only User</label>
-                  <input type="text" placeholder="Bootstrap Not Working" name="identity" class="form-control">
-                </div>
+                  
 
                 <button class="btn btn-primary pull-right">Publish Your Question</button>
 
