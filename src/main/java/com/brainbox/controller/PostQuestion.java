@@ -37,9 +37,10 @@ public class PostQuestion {
     @Autowired
     FetchAllTopicUserSide fetchalltopicuserside;
     
-    @RequestMapping(value="/post",method = RequestMethod.POST)
+    @RequestMapping(value="/post", method = RequestMethod.POST)
     public String postquestion(@ModelAttribute("postQuestion") PostQuestionModel postQuestionModel ,HttpServletRequest req,HttpServletResponse res)
     {
+        
         List<UserTable> lstuser= (List<UserTable>)req.getSession(false).getAttribute("lstuser");
      
         if(lstuser == null || lstuser.isEmpty())
@@ -49,6 +50,7 @@ public class PostQuestion {
         } 
         else 
         {
+            
             postQuestionModel.setUsertable(lstuser.get(0));
             postquestionservice.postquestionservice(postQuestionModel);
             if(lstuser.get(0).getUserrole().getRolepk().equals(new BigInteger("1")))

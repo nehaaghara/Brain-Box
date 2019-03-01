@@ -27,6 +27,10 @@ and open the template in the editor.
         <put-attribute name="userfooter" value="/WEB-INF/jsp/layout/userfooter.jsp" />
     </definition>
     
+    <definition name="dian.ublosis.user.login" template="/WEB-INF/jsp/layout/userLayout.jsp">
+        <put-attribute name="userheader" value="/WEB-INF/jsp/layout/userheader.jsp" />        
+     </definition>
+    
     <definition name="dian.user.index" extends="dian.ublosis.user.layout">
         <put-attribute name="body" value="/WEB-INF/jsp/view/userindex.jsp"></put-attribute>
         <put-attribute name="title" value="BrainBox"></put-attribute>
@@ -78,8 +82,19 @@ and open the template in the editor.
         <put-attribute name="title" value="BrainBox"></put-attribute>
     </definition>
     
+     <definition name="showyourquestion" extends="dian.ublosis.user.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/showyourquestion.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+     <definition name="showyouranswertiles" extends="dian.ublosis.user.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/showyouranswer.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
+    
      <definition name="newlogintiles" template="/WEB-INF/jsp/layout/loginandsignupLayout.jsp">
-        <put-attribute name="userfooter" value="/WEB-INF/jsp/layout/userfooter.jsp" />
+        
     </definition>
 
 </tiles-definitions> 

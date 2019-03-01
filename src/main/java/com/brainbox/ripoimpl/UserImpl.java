@@ -51,7 +51,22 @@ public class UserImpl implements User{
 
     @Override
     public void saveanswer(AnswerTable at) {
-        commondao.saveOrUpdate(at);
+        
+       
+    List<AnswerTable>  lstansbyidbyuid =  commondao.findEntity(AnswerTable.class , "postquestionmodel.id" , OperationTypeEnum.EQ , at.getPostquestionmodel().getId() , "usertable.uid" , OperationTypeEnum.EQ , at.getUsertable().getUid());
+        if(lstansbyidbyuid.isEmpty())
+        {
+            commondao.saveOrUpdate(at);
+        }
+        else
+        {
+            for(int i=0 ; i<lstansbyidbyuid.size() ; i++)
+            {
+                 commondao.delete(lstansbyidbyuid.get(i));
+            }
+            commondao.saveOrUpdate(at);
+        }
+        
     }
     
 }

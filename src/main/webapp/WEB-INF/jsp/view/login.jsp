@@ -17,14 +17,14 @@
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 
-            <div class="box-panel">
+            <div class="box-panel" style="box-shadow: 10px 10px 12px grey;">
 
             
 
               <!-- form login -->
-              <form action="loginauthen" method="get">
+              <form action="loginauthen" method="get" >
                 <div class="form-group">
-                    <h1 style="text-align: center">Login</h1><hr>
+                    <h1 style="text-align: center">BrainBox</h1><hr>
                 </div>
                   <div class="form-group">
                   <label>UserName</label>
@@ -37,15 +37,10 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-xs-6">
-                      <div class="checkbox flat-checkbox">
-                        <label>
-                          <input type="checkbox">
-                          <span class="fa fa-check"></span> Remember me?
-                        </label>
-                      </div>
+                    
                     </div>
                     <div class="col-xs-6 text-right">
-                      <p class="help-block"><a data-toggle="modal" href="#myModal">Forgot password?</a>
+                      <p class="help-block"><a data-toggle="modal" href="${pageContext.servletContext.contextPath}/signup">Sign Up</a>
                       </p>
                     </div>
                   </div>

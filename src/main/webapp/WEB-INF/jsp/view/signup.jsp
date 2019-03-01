@@ -10,14 +10,14 @@
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
 
-            <div class="box-panel">
+            <div class="box-panel" style="box-shadow: 10px 10px 12px grey;">
 
               
 
               <!-- form login -->
               <form action="signupauthen" method="get">
                    <div class="form-group">
-                       <h1 style="text-align: center">Sign Up</h1>
+                       <h1 style="text-align: center">BrainBox</h1>
                        <hr>
                   
                 </div>

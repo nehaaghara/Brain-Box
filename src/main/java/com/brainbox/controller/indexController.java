@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -67,7 +67,7 @@ public class indexController {
    ModelAndView mv=new ModelAndView();
     @RequestMapping(value="/",method = RequestMethod.GET)
     public String index(){
-        return "dian.user.index";
+        return "logintiles";
     }
     @RequestMapping(value="/login",method = RequestMethod.GET)
     public String loginPage(){        
@@ -199,5 +199,7 @@ public class indexController {
             e.printStackTrace();
         }
         return mv;
-    }    
+    } 
+
+  
 }
