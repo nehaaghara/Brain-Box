@@ -80,7 +80,34 @@ public class LikeController {
         mv.addObject("AnswerLikeResponse", answerLikeResponse);
         mv.setViewName("redirect:/showrecent");
         return mv;
-
     }
 
+    @RequestMapping(value = "dislikequestion/{userId}/{questionId}")
+    public ModelAndView disLikeQuestion(@PathVariable("userId") BigInteger userId, @PathVariable("questionId") BigInteger questionId) {
+        PostQuestionModel postQuestionModel = new PostQuestionModel();
+        postQuestionModel.setId(questionId);
+
+        UserTable userTable = new UserTable();
+        userTable.setUid(userId);
+        likeService.disLikeQuestion(postQuestionModel, userTable);
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("redirect:/showrecent");
+        return mv;
+    }
+
+    @RequestMapping(value = "dislikeanswer/{userId}/{answerId}")
+    public ModelAndView disLikeAnswer(@PathVariable("userId") BigInteger userId, @PathVariable("answerId") BigInteger answerId) {
+
+        AnswerTable answerTable = new AnswerTable();
+        answerTable.setAid(answerId);
+
+        UserTable userTable = new UserTable();
+        userTable.setUid(userId);
+        likeService.disLikeAnswer(answerTable, userTable);
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("redirect:/showrecent");
+        return mv;
+    }
 }

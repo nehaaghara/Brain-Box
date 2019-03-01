@@ -5,7 +5,7 @@
  */
 package com.brainbox.service;
 
-import com.brainbox.model.AnswerLikeModel;
+
 import com.brainbox.model.AnswerTable;
 import com.brainbox.model.PostQuestionModel;
 import com.brainbox.model.QuestionLikeModel;
@@ -13,8 +13,6 @@ import com.brainbox.model.UserTable;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -31,5 +29,10 @@ public interface LikeService {
     public boolean likeAnswerService(BigInteger aid, UserTable usertable);
     
     public Map<String,Object> fetchAnserLikebyId(List<PostQuestionModel> lstquestion,BigInteger userId);
-
+    
+    public void disLikeQuestion(PostQuestionModel postQuestionModel,UserTable userTable);
+    
+    public void disLikeAnswer(AnswerTable answerTable,UserTable userTable);
+    
+ 
 }
