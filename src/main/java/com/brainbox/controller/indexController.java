@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -42,163 +42,157 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 public class indexController {
-   @Autowired
-    UserImpl userimpl;
-   
-   @Autowired
-    ShowQuestionRipo showquestionripo;
-   
-   @Autowired
-   FetchAllTopicUserSide fetchalltopicuserside;
 
-   @Autowired
-   FetchRecentQuestionRipo fetchrecentquestionripo; 
-   
-   @Autowired
-   ShowQuestionServiceImpl showsuestionserviceimpl; 
-   
-   @Autowired
-   LikeService likeService;
-   
-   @Autowired 
-   RecentAnsService recentAnsService;
-   
-    
-   ModelAndView mv=new ModelAndView();
-    @RequestMapping(value="/",method = RequestMethod.GET)
-    public String index(){
+    @Autowired
+    UserImpl userimpl;
+
+    @Autowired
+    ShowQuestionRipo showquestionripo;
+
+    @Autowired
+    FetchAllTopicUserSide fetchalltopicuserside;
+
+    @Autowired
+    FetchRecentQuestionRipo fetchrecentquestionripo;
+
+    @Autowired
+    ShowQuestionServiceImpl showsuestionserviceimpl;
+
+    @Autowired
+    LikeService likeService;
+
+    @Autowired
+    RecentAnsService recentAnsService;
+
+    ModelAndView mv = new ModelAndView();
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index() {
         return "logintiles";
     }
-    @RequestMapping(value="/login",method = RequestMethod.GET)
-    public String loginPage(){        
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage() {
         return "logintiles";
     }
-     @RequestMapping(value="/signup",method = RequestMethod.GET)
-    public String signupPage(){
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String signupPage() {
         System.out.println("vikas hingu");
         return "signuptiles";
     }
-    
-    @RequestMapping(value="/postquestion",method = RequestMethod.GET)
-    public ModelAndView postquestionPage(HttpServletRequest req,HttpServletResponse res)
-    {
-        
-        List<AdminTopic> lsttopic= fetchalltopicuserside.fetchalltopic();
+
+    @RequestMapping(value = "/postquestion", method = RequestMethod.GET)
+    public ModelAndView postquestionPage(HttpServletRequest req, HttpServletResponse res) {
+
+        List<AdminTopic> lsttopic = fetchalltopicuserside.fetchalltopic();
         mv.addObject("lsttopic", lsttopic);
-          List<UserTable> lstuser= (List<UserTable>)req.getSession(false).getAttribute("lstuser");
-         if(lstuser == null || lstuser.isEmpty())
-        {
-            
+        List<UserTable> lstuser = (List<UserTable>) req.getSession(false).getAttribute("lstuser");
+        if (lstuser == null || lstuser.isEmpty()) {
+
             mv.setViewName("logintiles");
-            
-        } 
-        else
-        {
-            mv.addObject("postQuestion",new  PostQuestionModel());
+
+        } else {
+            mv.addObject("postQuestion", new PostQuestionModel());
             mv.setViewName("postQuestiontiles");
             return mv;
         }
-       return mv;
+        return mv;
     }
 
-     @RequestMapping(value="/showalldata1")
-    public ModelAndView showalldataPage(){
-         List<UserTable> lstuser=new ArrayList<>();
-        
-         try
-         {
-         lstuser =userimpl.fetchAllUser();
-         
-         }
-         catch(Exception e)
-         {
-              
-             System.out.println("error"+e);
-         }
-         
-       mv.addObject("alluser", lstuser);
-       mv.setViewName("showalldatatiles");
-       return mv;
+    @RequestMapping(value = "/showalldata1")
+    public ModelAndView showalldataPage() {
+        List<UserTable> lstuser = new ArrayList<>();
+
+        try {
+            lstuser = userimpl.fetchAllUser();
+
+        } catch (Exception e) {
+
+            System.out.println("error" + e);
+        }
+
+        mv.addObject("alluser", lstuser);
+        mv.setViewName("showalldatatiles");
+        return mv;
     }
-    
-       @RequestMapping(value="/postordelete",method = RequestMethod.GET)
-    public ModelAndView postquestionordelete(){
+
+    @RequestMapping(value = "/postordelete", method = RequestMethod.GET)
+    public ModelAndView postquestionordelete() {
         mv.addObject("addTopic", new AdminTopic());
         mv.setViewName("addtopictiles");
         return mv;
     }
-    
-       @RequestMapping(value="/showallquestion1",method = RequestMethod.GET)
-    public ModelAndView showquestion(){
-        
-        List<PostQuestionModel> lstque=showquestionripo.showquestion();
+
+    @RequestMapping(value = "/showallquestion1", method = RequestMethod.GET)
+    public ModelAndView showquestion() {
+
+        List<PostQuestionModel> lstque = showquestionripo.showquestion();
         mv.addObject("lstque", lstque);
         mv.setViewName("showallquestiontiles");
-        
+
         return mv;
     }
-      @RequestMapping(value="/adminpostque1",method = RequestMethod.GET)
-    public ModelAndView adminpostque(){
-        
-        List<AdminTopic> lsttopic= fetchalltopicuserside.fetchalltopic();
-        mv.addObject("lsttopic", lsttopic); 
-        mv.addObject("postQuestion",new  PostQuestionModel());
+
+    @RequestMapping(value = "/adminpostque1", method = RequestMethod.GET)
+    public ModelAndView adminpostque() {
+
+        List<AdminTopic> lsttopic = fetchalltopicuserside.fetchalltopic();
+        mv.addObject("lsttopic", lsttopic);
+        mv.addObject("postQuestion", new PostQuestionModel());
         mv.setViewName("postquestionadmin");
         return mv;
     }
-    
-      @RequestMapping(value="/showrecent",method = RequestMethod.GET)
-    public ModelAndView showrecent(HttpServletRequest req,HttpServletRequest res,RedirectAttributes redirectAttributes ){
-        ModelAndView mv=new ModelAndView(); 
-       List<UserTable> lstuser=(List<UserTable>) req.getSession(false).getAttribute("lstuser");
-       if(lstuser == null || lstuser.isEmpty())
-       {
-        mv.setViewName("dian.user.index");
-       }
-       else
-       {
-           //answer like functionality && show all answers function
-           List<PostQuestionModel> lstquestion = fetchrecentquestionripo.fetchrecentquestion();
-           Map<String,Object> answerByQuestion = likeService.fetchAnserLikebyId(lstquestion,lstuser.get(0).getUid());
-          
-           //question like functionality
-           Map<String,Object> likeMapQuestion = new HashMap();
-           for(PostQuestionModel postQuestionModel : lstquestion){
-              List<QuestionLikeModel> lstQuestionModel =  likeService.fetchQueLikesbyID(postQuestionModel);
-               likeMapQuestion.put("likeQuestion", lstQuestionModel.size());  
-              likeMapQuestion.put("questionId", postQuestionModel.getId());
-              for(QuestionLikeModel questionLikeModel:lstQuestionModel){  
-                 if(questionLikeModel.getUsertable().getUid().equals(lstuser.get(0).getUid())){
-                     likeMapQuestion.put("user",true);
-                  }
+
+    @RequestMapping(value = "/showrecent", method = RequestMethod.GET)
+    public ModelAndView showrecent(HttpServletRequest req, HttpServletRequest res, RedirectAttributes redirectAttributes) {
+        ModelAndView mv = new ModelAndView();
+        List<UserTable> lstuser = (List<UserTable>) req.getSession(false).getAttribute("lstuser");
+        if (lstuser == null || lstuser.isEmpty()) {
+            mv.setViewName("dian.user.index");
+        } else {
+            //answer like functionality && show all answers function
+            List<PostQuestionModel> lstquestion = fetchrecentquestionripo.fetchrecentquestion();
+            Map<String, Object> answerByQuestion = likeService.fetchAnserLikebyId(lstquestion, lstuser.get(0).getUid());
+
+            //question like functionality
+            Map<String, Object> likeMapQuestion = new HashMap();
+            for (PostQuestionModel postQuestionModel : lstquestion) {
+                List<QuestionLikeModel> lstQuestionModel = likeService.fetchQueLikesbyID(postQuestionModel);
+                likeMapQuestion.put("likeQuestion", lstQuestionModel.size());
+                likeMapQuestion.put("questionId", postQuestionModel.getId());
+                for (QuestionLikeModel questionLikeModel : lstQuestionModel) {
+                    if (questionLikeModel.getUsertable().getUid().equals(lstuser.get(0).getUid())) {
+                        likeMapQuestion.put("user", true);
+                    }
                 }
-           } 
-          
-           mv.addObject("mapQuestionAnswer",answerByQuestion);
-           mv.addObject("likeMapQuestion",likeMapQuestion);
-           mv.addObject("lstquestion", lstquestion);
-           mv.addObject("answertable", new AnswerTable());
-           mv.setViewName("showrecentquestionusertiles");
-       }
-       return mv;
+            }
+
+            mv.addObject("mapQuestionAnswer", answerByQuestion);
+            mv.addObject("likeMapQuestion", likeMapQuestion);
+            mv.addObject("lstquestion", lstquestion);
+            mv.addObject("answertable", new AnswerTable());
+            mv.setViewName("showrecentquestionusertiles");
+        }
+        return mv;
     }
-   
+
     @RequestMapping(value = "/editquestion/{id}", method = RequestMethod.GET)
-   public ModelAndView editAccount(@PathVariable("id") BigInteger id,  Model model) {
+    public ModelAndView editAccount(@PathVariable("id") BigInteger id, Model model) {
         try {
 
             PostQuestionModel postQuestionModel = showsuestionserviceimpl.fetchquestionid(id);
-            List<AdminTopic> lsttopic= fetchalltopicuserside.fetchalltopic();
-            mv.addObject("lsttopic", lsttopic); 
+            List<AdminTopic> lsttopic = fetchalltopicuserside.fetchalltopic();
+            mv.addObject("lsttopic", lsttopic);
             mv.addObject("postQuestion", postQuestionModel);
             mv.setViewName("postquestionadmin");
         } catch (Exception e) {
             e.printStackTrace();
         }
         return mv;
-<<<<<<< HEAD
-    }  
-   
+    } 
+    
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
         try {
@@ -209,9 +203,4 @@ public class indexController {
             return "";
         }
     }
-=======
-    } 
-
-  
->>>>>>> 76fadf0827a7766eb97747a49219067bcd50bf4e
 }
