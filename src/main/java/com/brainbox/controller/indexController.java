@@ -156,7 +156,7 @@ public class indexController {
             Map<String, Object> answerByQuestion = likeService.fetchAnserLikebyId(lstquestion, lstuser.get(0).getUid());
 
             //question like functionality
-            List<Map<String, Object>> likelstMapQuestion = new ArrayList();            
+            List<Map<String, Object>> likelstMapQuestion = new ArrayList();
             for (PostQuestionModel postQuestionModel : lstquestion) {
                 Map<String, Object> likeMapQuestion = new HashMap();
                 List<QuestionLikeModel> lstQuestionModel = likeService.fetchQueLikesbyID(postQuestionModel);
@@ -165,14 +165,13 @@ public class indexController {
                 for (QuestionLikeModel questionLikeModel : lstQuestionModel) {
                     if (questionLikeModel.getUsertable().getUid().equals(lstuser.get(0).getUid())) {
                         likeMapQuestion.put("user", true);
-                    }else{
-                       likeMapQuestion.put("user", false); 
+                    } else {
+                        likeMapQuestion.put("user", false);
                     }
                 }
                 likelstMapQuestion.add(likeMapQuestion);
             }
-           
-                System.out.println(lstquestion.size()+"<:LIKE QUESTIONS:>"+likelstMapQuestion);
+
             mv.addObject("mapQuestionAnswer", answerByQuestion);
             mv.addObject("likelstMapQuestion", likelstMapQuestion);
             mv.addObject("lstquestion", lstquestion);

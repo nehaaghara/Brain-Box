@@ -1,6 +1,5 @@
 
-<%@page import="com.brainbox.model.UserTable"%>
-<%@page import="java.util.Map"%>
+
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,6 +7,8 @@
 <%@page import="com.brainbox.model.PostQuestionModel"%>
 <%@page import="com.brainbox.model.AnswerTable"%>
 <%@page import="java.util.List"%>
+<%@page import="com.brainbox.model.UserTable"%>
+<%@page import="java.util.Map"%>
 
 <div class="main-content-area">
     <!-- =-=-=-=-=-=-= Latest Questions  =-=-=-=-=-=-= -->
@@ -52,23 +53,25 @@
                                     <div class="row">
                                         <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
                                             <a data-toggle="tooltip" data-placement="bottom" data-original-title="Martina Jaz" href="#">
-                                                <img alt="User Image" class="img-responsive center-block" src="${pageContext.servletContext.contextPath}/webResource/user/images/authors/1.jpg">
+                                                <img alt="User Image" class="img-responsive center-block rounded-circle" src="${pageContext.servletContext.contextPath}/webResource/user/images/avtar.jpg">
                                             </a>
                                                 <h5><center> <font color="#3c8dbc"><%=lstuser.get(0).getUsername().toUpperCase()%></font></center></h5>
                                         </div>
-                                        <form:form action="recentanscontroller" method="get" modelAttribute="answertable">
+                                         <form:form action="recentanscontroller" method="get" modelAttribute="answertable">
                                             <input path="qid" type="hidden" name="qid" value="<%= lstquestion.get(i).getId()%>" />    
-                                            <div class="col-md-7 col-sm-8  col-xs-12">
-                                                <h3> <%= lstquestion.get(i).getQtitle()%><div class="listing-meta pull-right"> <span><i class="fa fa-clock-o" aria-hidden="true"></i>8 minutes ago</span>  
+                                            <div class="col-md-9 col-sm-12  col-xs-12">
+                                                <h3> <%= lstquestion.get(i).getQtitle()%>
+                                            
+                                                    <div class="listing-meta pull-right"> <span><i class="fa fa-clock-o" aria-hidden="true"></i>8 minutes ago</span>  
                                                         <%if(null!=lstQueMap.get(i).get("user") && (boolean)lstQueMap.get(i).get("user")){
-                                                        %><a href="dislikequestion/<%= user%>/<%= lstquestion.get(i).getId()%>"><i class="fa fa-thumbs-up" style="color: #bb2026"></i></a> <span><%=likeVal%> Likes</span><%
+                                                        %><a href="dislikequestion/<%= user%>/<%= lstquestion.get(i).getId()%>/showrecent"><i class="fa fa-thumbs-up" style="color: #bb2026"></i></a> <span><%=likeVal%> Likes</span><%
                                             }else{
-                                                            %><a href="likequestion/<%= lstquestion.get(i).getId()%>"><i class="fa fa-thumbs-o-up"></i></a> <span><%=likeVal%> Likes</span><%    
+                                                            %><a href="likequestion/<%= lstquestion.get(i).getId()%>/showrecent"><i class="fa fa-thumbs-o-up"></i></a> <span><%=likeVal%> Likes</span><%    
                                                     }%> 
 
                                                     </div></h3>
                                             </div>
-                                            <div class="col-md-9 col-sm-8  col-xs-12">
+                                            <div class="col-md-9 col-sm-12  col-xs-12">
                                                 <h3><a  href="#"> Your Answer </a></h3>
 
                                                 <div class="form-group">
@@ -98,13 +101,13 @@
                                                     </p>
                                                     <% if(answer.isUser()){%>
                                                     <ul class="list-inline">
-                                                        <li><a href="dislikeanswer/<%= user%>/<%= answer.getAid()%>" class="link-black text-sm"><i class="fa fa-thumbs-up margin-r-5" style="color: #bb2026"></i> <%= answer.getNo_of_like()%> Likes</a>
+                                                        <li><a href="dislikeanswer/<%= user%>/<%= answer.getAid()%>/showrecent" class="link-black text-sm"><i class="fa fa-thumbs-up margin-r-5" style="color: #bb2026"></i> <%= answer.getNo_of_like()%> Likes</a>
                                                         </li>
                                                     </ul>
                                                     <%
                                              }else{
                                                     %><ul class="list-inline">
-                                                        <li><a href="likeanswer/<%= answer.getAid()%>" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> <%= answer.getNo_of_like()%> Likes</a>
+                                                        <li><a href="likeanswer/<%= answer.getAid()%>/showrecent" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> <%= answer.getNo_of_like()%> Likes</a>
                                                         </li>
                                                     </ul><%    
                                                     }%>   
@@ -113,6 +116,7 @@
                                                 <% } } %>
                                             </div>
                                         </form:form>
+                                       
                                     </div>
                                     <% } %>
 

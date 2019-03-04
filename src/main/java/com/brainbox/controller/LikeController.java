@@ -40,8 +40,8 @@ public class LikeController {
     @Autowired
     LikeService likeService;
 
-    @RequestMapping(value = "/likequestion/{qid}")
-    public ModelAndView likeQuestion(@PathVariable("qid") BigInteger qid, HttpServletRequest request, HttpServletResponse res) {
+    @RequestMapping(value = "/likequestion/{qid}/{flag}")
+    public ModelAndView likeQuestion(@PathVariable("flag") String flag, @PathVariable("qid") BigInteger qid, HttpServletRequest request, HttpServletResponse res) {
 
         ModelAndView mv = new ModelAndView();
         List<PostQuestionModel> lstquestion = fetchrecentquestionripo.fetchrecentquestion();
@@ -63,12 +63,16 @@ public class LikeController {
         mv.addObject("lstquestion", lstquestion);
         mv.addObject("answertable", new AnswerTable());
         mv.addObject("response", response);
-        mv.setViewName("redirect:/showrecent");
+        if ("yourlevel".equalsIgnoreCase(flag)) {
+            mv.setViewName("redirect:/yourlevelquestion");
+        } else {
+            mv.setViewName("redirect:/showrecent");
+        }
         return mv;
     }
 
-    @RequestMapping(value = "/likeanswer/{aid}")
-    public ModelAndView likeAnswer(@PathVariable("aid") BigInteger aid, HttpServletRequest request, HttpServletResponse res) {
+    @RequestMapping(value = "/likeanswer/{aid}/{flag}")
+    public ModelAndView likeAnswer(@PathVariable("flag") String flag, @PathVariable("aid") BigInteger aid, HttpServletRequest request, HttpServletResponse res) {
 
         List<UserTable> lstuser = (List<UserTable>) request.getSession(false).getAttribute("lstuser");
 
@@ -78,12 +82,16 @@ public class LikeController {
 
         ModelAndView mv = new ModelAndView();
         mv.addObject("AnswerLikeResponse", answerLikeResponse);
-        mv.setViewName("redirect:/showrecent");
+        if ("yourlevel".equalsIgnoreCase(flag)) {
+            mv.setViewName("redirect:/yourlevelquestion");
+        } else {
+            mv.setViewName("redirect:/showrecent");
+        }
         return mv;
     }
 
-    @RequestMapping(value = "dislikequestion/{userId}/{questionId}")
-    public ModelAndView disLikeQuestion(@PathVariable("userId") BigInteger userId, @PathVariable("questionId") BigInteger questionId) {
+    @RequestMapping(value = "dislikequestion/{userId}/{questionId}/{flag}")
+    public ModelAndView disLikeQuestion(@PathVariable("flag") String flag, @PathVariable("userId") BigInteger userId, @PathVariable("questionId") BigInteger questionId) {
         PostQuestionModel postQuestionModel = new PostQuestionModel();
         postQuestionModel.setId(questionId);
 
@@ -92,12 +100,17 @@ public class LikeController {
         likeService.disLikeQuestion(postQuestionModel, userTable);
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:/showrecent");
+        if ("yourlevel".equalsIgnoreCase(flag)) {
+            mv.setViewName("redirect:/yourlevelquestion");
+        } else {
+            mv.setViewName("redirect:/showrecent");
+        }
+
         return mv;
     }
 
-    @RequestMapping(value = "dislikeanswer/{userId}/{answerId}")
-    public ModelAndView disLikeAnswer(@PathVariable("userId") BigInteger userId, @PathVariable("answerId") BigInteger answerId) {
+    @RequestMapping(value = "dislikeanswer/{userId}/{answerId}/{flag}")
+    public ModelAndView disLikeAnswer(@PathVariable("flag") String flag, @PathVariable("userId") BigInteger userId, @PathVariable("answerId") BigInteger answerId) {
 
         AnswerTable answerTable = new AnswerTable();
         answerTable.setAid(answerId);
@@ -107,7 +120,11 @@ public class LikeController {
         likeService.disLikeAnswer(answerTable, userTable);
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:/showrecent");
+        if ("yourlevel".equalsIgnoreCase(flag)) {
+            mv.setViewName("redirect:/yourlevelquestion");
+        } else {
+            mv.setViewName("redirect:/showrecent");
+        }
         return mv;
     }
 }

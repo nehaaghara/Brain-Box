@@ -8,9 +8,9 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
                 <ul class="top-nav nav-left">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="#" onclick="window.location.href = '${pageContext.servletContext.contextPath}/showrecent'">Home</a>
                     </li>
-                    <li class="hidden-xs"><a href="blog.html">Blog</a>
+                    <li class="hidden-xs"><a href="#">Blog</a>
                     </li>
                     <li  class="hidden-xs"><a href="contact.html">Contact Us</a>
                     </li>
@@ -21,7 +21,7 @@
                     
                     <li class="dropdown"> 
                         <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">
-                            <img class="img-circle resize" alt="" src="${pageContext.servletContext.contextPath}/webResource/admin/dist/img/avatar5.png">
+                            <img class="img-circle resize" alt="" src="${pageContext.servletContext.contextPath}/webResource/admin/dist/img/avtar.jpg">
                             <span class="hidden-xs small-padding">
                                 <span><%=lstuser.get(0).getUsername()%></span>
                                 <i class="fa fa-caret-down"></i>
