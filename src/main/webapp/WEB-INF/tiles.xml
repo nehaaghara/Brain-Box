@@ -92,6 +92,10 @@ and open the template in the editor.
         <put-attribute name="title" value="BrainBox"></put-attribute>
     </definition>
     
+      <definition name="yourlevelquestiontiles" extends="dian.ublosis.user.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/yourlevelquestion.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
     
      <definition name="newlogintiles" template="/WEB-INF/jsp/layout/loginandsignupLayout.jsp">
         

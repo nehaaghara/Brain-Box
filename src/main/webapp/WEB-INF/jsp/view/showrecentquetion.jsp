@@ -26,7 +26,7 @@
                                 </li>
                                 <li> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/youranswer'"><i class="icofont icon-global"></i><span class="hidden-xs">Your Answer</span></a> 
                                 </li>
-                                <li> <a data-toggle="tab" href="#tab4"><i class="icofont icon-linegraph"></i><span class="hidden-xs">No answers</span></a> 
+                                <li> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/yourlevelquestion'"><i class="icofont icon-linegraph"></i><span class="hidden-xs">Your Level Question</span></a> 
                                 </li>
                             </ul>
                         </div>
