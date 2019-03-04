@@ -84,8 +84,26 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public void disLikeAnswer(AnswerTable answerTable, UserTable userTable) {
-        AnswerLikeModel answerLikeModel=likeRipo.fetchAnswerLikeByAnswerUserId(answerTable, userTable);
+        AnswerLikeModel answerLikeModel = likeRipo.fetchAnswerLikeByAnswerUserId(answerTable, userTable);
         likeRipo.disLikeAnswerId(answerLikeModel);
     }
 
+    @Override
+    public Map<String, Object> fetchQuestionLike(List<PostQuestionModel> lstquestion, BigInteger userId) {
+
+        Map<String, Object> likeMapQuestion = new HashMap();
+        for (PostQuestionModel postQuestionModel : lstquestion) {
+            List<QuestionLikeModel> lstQuestionModel = likeRipo.fetchQueLikesbyID(postQuestionModel);
+            likeMapQuestion.put("likeQuestion", lstQuestionModel.size());
+            likeMapQuestion.put("questionId", postQuestionModel.getId());
+            for (QuestionLikeModel questionLikeModel : lstQuestionModel) {
+                if (questionLikeModel.getUsertable().getUid().equals(userId)) {
+                    postQuestionModel.setUser(true);
+                    break;
+                }
+            }
+            likeMapQuestion.put("QuestionList", lstQuestionModel);
+        }
+        return likeMapQuestion;
+    }
 }

@@ -8,21 +8,20 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
                 <ul class="top-nav nav-left">
+
                   <li class="hidden-xs"><a href="blog.html">Blog</a>
                     </li>
                     <li  class="hidden-xs"><a href="${pageContext.servletContext.contextPath}/contectusindex">Contact Us</a>
+
                     </li>
                 </ul>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-8">
                 <ul class="top-nav nav-right">
-                    <li><a href="${pageContext.servletContext.contextPath}/login"><i class="fa fa-lock" aria-hidden="true"></i>Login</a>
-                    </li>
-                    <li><a href="${pageContext.servletContext.contextPath}/signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Signup</a>
-                    </li>
+                    
                     <li class="dropdown"> 
                         <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">
-                            <img class="img-circle resize" alt="" src="${pageContext.servletContext.contextPath}/webResource/admin/dist/img/avatar5.png">
+                            <img class="img-circle resize" alt="" src="${pageContext.servletContext.contextPath}/webResource/admin/dist/img/avtar.jpg">
                             <span class="hidden-xs small-padding">
                                 <span><%=lstuser.get(0).getUsername()%></span>
                                 <i class="fa fa-caret-down"></i>

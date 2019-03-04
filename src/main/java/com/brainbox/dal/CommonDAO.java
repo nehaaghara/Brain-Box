@@ -459,7 +459,6 @@ public class CommonDAO extends HibernateTemplate {
                 queryStr.append(paramBuilder.toString());
                 queryStr.append(")");
             }
-
             SQLQuery query = session.createSQLQuery(queryStr.toString());
             updatedCount = query.executeUpdate();
 
