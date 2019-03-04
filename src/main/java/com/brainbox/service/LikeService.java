@@ -34,5 +34,7 @@ public interface LikeService {
     
     public void disLikeAnswer(AnswerTable answerTable,UserTable userTable);
     
+    public Map<String,Object> fetchQuestionLike(List<PostQuestionModel> lstquestion,BigInteger userId);
+    
  
 }

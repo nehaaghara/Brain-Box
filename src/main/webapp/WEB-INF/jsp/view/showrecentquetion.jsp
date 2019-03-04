@@ -39,14 +39,14 @@
                                 <div class="listing-grid">
                                     <% 
                                         List<PostQuestionModel> lstquestion = (List<PostQuestionModel>) request.getAttribute("lstquestion");
-                                        Map<String,Object> lstQueMap = (Map<String,Object>)request.getAttribute("likeMapQuestion");
+                                        List<Map<String,Object>> lstQueMap = (List<Map<String,Object>>)request.getAttribute("likelstMapQuestion");
                                         List<UserTable> lstuser = (List<UserTable>) request.getSession(false).getAttribute("lstuser");
                                         String user = lstuser.get(0).getUid().toString();
                                         for (int i = 0; i < lstquestion.size(); i++) { 
                                             String likeVal = "0";
-                                            if(lstquestion.get(i).getId() == lstQueMap.get("questionId")){
-                                                likeVal = lstQueMap.get("likeQuestion").toString();
-                                                  }
+                                            if(lstquestion.get(i).getId() == lstQueMap.get(i).get("questionId")){
+                                                likeVal = lstQueMap.get(i).get("likeQuestion").toString();
+                                            }
                                     %>
 
                                     <div class="row">
@@ -54,12 +54,13 @@
                                             <a data-toggle="tooltip" data-placement="bottom" data-original-title="Martina Jaz" href="#">
                                                 <img alt="User Image" class="img-responsive center-block" src="${pageContext.servletContext.contextPath}/webResource/user/images/authors/1.jpg">
                                             </a>
+                                                <h5><center> <font color="#3c8dbc"><%=lstuser.get(0).getUsername().toUpperCase()%></font></center></h5>
                                         </div>
                                         <form:form action="recentanscontroller" method="get" modelAttribute="answertable">
                                             <input path="qid" type="hidden" name="qid" value="<%= lstquestion.get(i).getId()%>" />    
                                             <div class="col-md-7 col-sm-8  col-xs-12">
                                                 <h3> <%= lstquestion.get(i).getQtitle()%><div class="listing-meta pull-right"> <span><i class="fa fa-clock-o" aria-hidden="true"></i>8 minutes ago</span>  
-                                                        <%if(null!=lstQueMap.get("user") && (boolean)lstQueMap.get("user")){
+                                                        <%if(null!=lstQueMap.get(i).get("user") && (boolean)lstQueMap.get(i).get("user")){
                                                         %><a href="dislikequestion/<%= user%>/<%= lstquestion.get(i).getId()%>"><i class="fa fa-thumbs-up" style="color: #bb2026"></i></a> <span><%=likeVal%> Likes</span><%
                                             }else{
                                                             %><a href="likequestion/<%= lstquestion.get(i).getId()%>"><i class="fa fa-thumbs-o-up"></i></a> <span><%=likeVal%> Likes</span><%    

@@ -18,10 +18,7 @@
             </div>
             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-8">
                 <ul class="top-nav nav-right">
-                    <li><a href="${pageContext.servletContext.contextPath}/login"><i class="fa fa-lock" aria-hidden="true"></i>Login</a>
-                    </li>
-                    <li><a href="${pageContext.servletContext.contextPath}/signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Signup</a>
-                    </li>
+                    
                     <li class="dropdown"> 
                         <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">
                             <img class="img-circle resize" alt="" src="${pageContext.servletContext.contextPath}/webResource/admin/dist/img/avatar5.png">

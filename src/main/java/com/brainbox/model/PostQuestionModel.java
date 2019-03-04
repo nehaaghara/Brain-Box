@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -43,6 +44,16 @@ public class PostQuestionModel {
     @JoinColumn(name = "uid")
     UserTable usertable;
 
+    @Transient
+    boolean user;
+
+    public boolean isUser() {
+        return user;
+    }
+
+    public void setUser(boolean user) {
+        this.user = user;
+    }
     public UserTable getUsertable() {
         return usertable;
     }

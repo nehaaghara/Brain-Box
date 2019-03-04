@@ -156,20 +156,25 @@ public class indexController {
             Map<String, Object> answerByQuestion = likeService.fetchAnserLikebyId(lstquestion, lstuser.get(0).getUid());
 
             //question like functionality
-            Map<String, Object> likeMapQuestion = new HashMap();
+            List<Map<String, Object>> likelstMapQuestion = new ArrayList();            
             for (PostQuestionModel postQuestionModel : lstquestion) {
+                Map<String, Object> likeMapQuestion = new HashMap();
                 List<QuestionLikeModel> lstQuestionModel = likeService.fetchQueLikesbyID(postQuestionModel);
                 likeMapQuestion.put("likeQuestion", lstQuestionModel.size());
                 likeMapQuestion.put("questionId", postQuestionModel.getId());
                 for (QuestionLikeModel questionLikeModel : lstQuestionModel) {
                     if (questionLikeModel.getUsertable().getUid().equals(lstuser.get(0).getUid())) {
                         likeMapQuestion.put("user", true);
+                    }else{
+                       likeMapQuestion.put("user", false); 
                     }
                 }
+                likelstMapQuestion.add(likeMapQuestion);
             }
-
+           
+                System.out.println(lstquestion.size()+"<:LIKE QUESTIONS:>"+likelstMapQuestion);
             mv.addObject("mapQuestionAnswer", answerByQuestion);
-            mv.addObject("likeMapQuestion", likeMapQuestion);
+            mv.addObject("likelstMapQuestion", likelstMapQuestion);
             mv.addObject("lstquestion", lstquestion);
             mv.addObject("answertable", new AnswerTable());
             mv.setViewName("showrecentquestionusertiles");
@@ -190,8 +195,7 @@ public class indexController {
             e.printStackTrace();
         }
         return mv;
-    } 
-    
+    }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {

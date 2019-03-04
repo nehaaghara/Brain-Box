@@ -33,7 +33,7 @@ public class LikeRipoImpl implements LikeRipo {
 
         List<QuestionLikeModel> lstQuestionLike = commonDAO.findEntity(QuestionLikeModel.class, "usertable.uid", OperationTypeEnum.EQ, questionlikemodel.getUsertable().getUid(), "postquestionmodel.id", OperationTypeEnum.EQ, questionlikemodel.getPostquestionmodel().getId());
         if (lstQuestionLike.isEmpty()) {
-            commonDAO.saveOrUpdate(questionlikemodel);
+            commonDAO.executeCommonSP("afterLikeOperations", questionlikemodel.getPostquestionmodel().getId().toString(), questionlikemodel.getUsertable().getUid().toString(), "que");
             return true;
         }
         return false;
@@ -55,10 +55,9 @@ public class LikeRipoImpl implements LikeRipo {
         List<AnswerLikeModel> lstanslike = commonDAO.findEntity(AnswerLikeModel.class, "answertable.aid", OperationTypeEnum.EQ, aid, "usertable.uid", OperationTypeEnum.EQ, usertable.getUid());
 
         if (lstanslike.isEmpty()) {
-            commonDAO.saveOrUpdate(answerLikeModel);
+            commonDAO.executeCommonSP("afterLikeOperations", aid.toString(), usertable.getUid().toString(), "ans");
             return true;
         }
-
         return false;
     }
 
