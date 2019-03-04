@@ -52,19 +52,18 @@
                                     <div class="row">
                                         <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
                                             <a data-toggle="tooltip" data-placement="bottom" data-original-title="Martina Jaz" href="#">
-                                                <img alt="" class="img-responsive center-block" src="${pageContext.servletContext.contextPath}/webResource/user/images/authors/1.jpg">
+                                                <img alt="User Image" class="img-responsive center-block" src="${pageContext.servletContext.contextPath}/webResource/user/images/authors/1.jpg">
                                             </a>
                                         </div>
                                         <form:form action="recentanscontroller" method="get" modelAttribute="answertable">
                                             <input path="qid" type="hidden" name="qid" value="<%= lstquestion.get(i).getId()%>" />    
                                             <div class="col-md-7 col-sm-8  col-xs-12">
-                                                <h3> <%= lstquestion.get(i).getQtitle()%><div class="listing-meta pull-right"> <span><i class="fa fa-clock-o" aria-hidden="true"></i>8 mintes ago</span>  <span><%=likeVal%> Likes</span>
-                                                        <%if(null != lstQueMap.get("user") && (boolean)lstQueMap.get("user")){
-                                                        %><i class="fa fa-thumbs-up" style="color: #bb2026"></i><%
-                                                }else{
-                                                        %><a href="likequestion/<%= lstquestion.get(i).getId()%>"><i class="fa fa-thumbs-o-up"></i></a><%    
-                                                    }%>   
-
+                                                <h3> <%= lstquestion.get(i).getQtitle()%><div class="listing-meta pull-right"> <span><i class="fa fa-clock-o" aria-hidden="true"></i>8 minutes ago</span>  
+                                                        <%if(null!=lstQueMap.get("user") && (boolean)lstQueMap.get("user")){
+                                                        %><a href="dislikequestion/<%= user%>/<%= lstquestion.get(i).getId()%>"><i class="fa fa-thumbs-up" style="color: #bb2026"></i></a> <span><%=likeVal%> Likes</span><%
+                                            }else{
+                                                            %><a href="likequestion/<%= lstquestion.get(i).getId()%>"><i class="fa fa-thumbs-o-up"></i></a> <span><%=likeVal%> Likes</span><%    
+                                                    }%> 
 
                                                     </div></h3>
                                             </div>
@@ -81,6 +80,39 @@
                                                         Map<String,Object> mapQuestionAnswer = (Map<String,Object>) request.getAttribute("mapQuestionAnswer");
                                                        if(String.valueOf(lstquestion.get(i).getId()).equalsIgnoreCase(String.valueOf(mapQuestionAnswer.get("queID")))){
                                                          List<AnswerTable> lstAnswerTables =(List<AnswerTable>) mapQuestionAnswer.get("answerList");
+<<<<<<< HEAD
+                                                           for(AnswerTable answer :lstAnswerTables){%>
+                                                    <div class="post">
+                                                        <div class="user-block">
+                                                            <img class="img-circle img-bordered-sm" src="webResource/admin/dist/img/avatar5.png" alt="user image">
+                                                            <span class="username">
+                                                                <a href="#" style="font-size: 20px;"><font color="#3c8dbc"><%= answer.getUsertable().getUsername().toUpperCase() %></font></a>
+                                                            </span>
+                                                            <span class="description" style="font-size: 12px;">Shared publicly</span>
+                                                        </div>
+                                                        <!-- /.user-block -->
+                                                        <p style="font-size: 16px;">
+                                                            <font color="black">
+                                                            <%= answer.getAnswer()%>
+                                                            </font>
+                                                        </p>
+                                                        <% if(answer.isUser()){%>
+                                                        <ul class="list-inline">
+                                                            <li><a href="dislikeanswer/<%= user%>/<%= answer.getAid()%>" class="link-black text-sm"><i class="fa fa-thumbs-up margin-r-5" style="color: #bb2026"></i> <%= answer.getNo_of_like()%> Likes</a>
+                                                            </li>
+                                                        </ul>
+                                                        <%
+                                                 }else{
+                                                        %><ul class="list-inline">
+                                                            <li><a href="likeanswer/<%= answer.getAid()%>" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> <%= answer.getNo_of_like()%> Likes</a>
+                                                            </li>
+                                                        </ul><%    
+                                                    }%>   
+                                                    </div>
+                                                    <hr>
+                                                    <% } } %>
+                                                </form:form>
+=======
                                                             if(lstAnswerTables.size() > 0){ %>
                                                                <div class="questionAnswerScroll" style="background-color: white">
                                                                <%for(AnswerTable answer :lstAnswerTables){%>
@@ -118,6 +150,7 @@
                                                         } %>
                                                 
 
+>>>>>>> 76fadf0827a7766eb97747a49219067bcd50bf4e
                                             </div>
                                         </form:form>
                                     </div>

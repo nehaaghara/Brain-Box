@@ -86,8 +86,7 @@ public class indexController {
         List<AdminTopic> lsttopic= fetchalltopicuserside.fetchalltopic();
         mv.addObject("lsttopic", lsttopic);
           List<UserTable> lstuser= (List<UserTable>)req.getSession(false).getAttribute("lstuser");
-     
-        if(lstuser == null || lstuser.isEmpty())
+         if(lstuser == null || lstuser.isEmpty())
         {
             
             mv.setViewName("logintiles");
@@ -166,19 +165,17 @@ public class indexController {
            Map<String,Object> likeMapQuestion = new HashMap();
            for(PostQuestionModel postQuestionModel : lstquestion){
               List<QuestionLikeModel> lstQuestionModel =  likeService.fetchQueLikesbyID(postQuestionModel);
-              likeMapQuestion.put("likeQuestion", lstQuestionModel.size());  
+               likeMapQuestion.put("likeQuestion", lstQuestionModel.size());  
               likeMapQuestion.put("questionId", postQuestionModel.getId());
               for(QuestionLikeModel questionLikeModel:lstQuestionModel){  
                  if(questionLikeModel.getUsertable().getUid().equals(lstuser.get(0).getUid())){
-                    likeMapQuestion.put("user", true);
-                }else{
-                     likeMapQuestion.put("user",false);
-                 }
-              }
+                     likeMapQuestion.put("user",true);
+                  }
+                }
            } 
           
            mv.addObject("mapQuestionAnswer",answerByQuestion);
-           mv.addObject("likeMapQuestion", likeMapQuestion);
+           mv.addObject("likeMapQuestion",likeMapQuestion);
            mv.addObject("lstquestion", lstquestion);
            mv.addObject("answertable", new AnswerTable());
            mv.setViewName("showrecentquestionusertiles");
@@ -199,7 +196,22 @@ public class indexController {
             e.printStackTrace();
         }
         return mv;
+<<<<<<< HEAD
+    }  
+   
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        try {
+            HttpSession session = request.getSession();
+            session.invalidate();
+            return "redirect:/login";
+        } catch (Exception e) {
+            return "";
+        }
+    }
+=======
     } 
 
   
+>>>>>>> 76fadf0827a7766eb97747a49219067bcd50bf4e
 }

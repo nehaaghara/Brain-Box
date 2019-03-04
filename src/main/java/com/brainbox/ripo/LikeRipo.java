@@ -26,7 +26,14 @@ public interface LikeRipo {
     public List<QuestionLikeModel> fetchQueLikesbyID(PostQuestionModel postquestionmodel);
 
     public boolean likeAnswerRepository(BigInteger aid, UserTable usertable);
-    
+
     public List<AnswerLikeModel> fetchAnswerLikeById(AnswerTable answerTable);
 
+    public QuestionLikeModel fetchQuestionLikeByQuestionUserId(PostQuestionModel postquestionmodel, UserTable usertable);
+
+    public void disLikeQuestionId(QuestionLikeModel questionlikemodel);
+    
+    public AnswerLikeModel fetchAnswerLikeByAnswerUserId(AnswerTable answerTable,UserTable userTable);
+    
+    public void disLikeAnswerId(AnswerLikeModel answerLikeModel);
 }

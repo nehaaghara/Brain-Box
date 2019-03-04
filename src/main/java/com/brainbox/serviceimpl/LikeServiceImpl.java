@@ -18,9 +18,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -56,8 +54,8 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
-    public Map<String, Object> fetchAnserLikebyId(List<PostQuestionModel> lstquestion,BigInteger userId) {
-       
+    public Map<String, Object> fetchAnserLikebyId(List<PostQuestionModel> lstquestion, BigInteger userId) {
+
         Map<String, Object> answerByQuestion = new HashMap();
         for (PostQuestionModel postQuestionModel : lstquestion) {
             answerByQuestion.put("queID", postQuestionModel.getId());
@@ -65,18 +63,29 @@ public class LikeServiceImpl implements LikeService {
             for (AnswerTable answerTable1 : lstAnswerTables) {
                 List<AnswerLikeModel> lstAnswers = likeRipo.fetchAnswerLikeById(answerTable1);
                 answerTable1.setNo_of_like(lstAnswers.size());
-                for(AnswerLikeModel answerLikeModel: lstAnswers){
+                for (AnswerLikeModel answerLikeModel : lstAnswers) {
                     if (answerLikeModel.getUsertable().getUid().equals(userId)) {
                         answerTable1.setUser(true);
-                    } else {
-                        answerTable1.setUser(false);
+                        break;
                     }
-                }                
+                }
             }
             answerByQuestion.put("answerList", lstAnswerTables);
         }
 
         return answerByQuestion;
+    }
+
+    @Override
+    public void disLikeQuestion(PostQuestionModel postQuestionModel, UserTable userTable) {
+        QuestionLikeModel questionLikeModel = likeRipo.fetchQuestionLikeByQuestionUserId(postQuestionModel, userTable);
+        likeRipo.disLikeQuestionId(questionLikeModel);
+    }
+
+    @Override
+    public void disLikeAnswer(AnswerTable answerTable, UserTable userTable) {
+        AnswerLikeModel answerLikeModel=likeRipo.fetchAnswerLikeByAnswerUserId(answerTable, userTable);
+        likeRipo.disLikeAnswerId(answerLikeModel);
     }
 
 }
