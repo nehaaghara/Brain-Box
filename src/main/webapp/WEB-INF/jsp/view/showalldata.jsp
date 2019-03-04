@@ -50,7 +50,7 @@
                     
               <%  List<UserTable> lstuser1 = (List<UserTable>)request.getAttribute("alluser"); %>
                      
-   <% for(int i=0; i<lstuser1.size();i++){ out.println("vikas"); %>
+   <% for(int i=0; i<lstuser1.size();i++){  %>
  
         <tr>
             <% if(lstuser1.get(i).getUserrole().getRolename().equals("user")) { %>

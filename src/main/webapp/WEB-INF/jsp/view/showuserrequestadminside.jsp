@@ -1,11 +1,18 @@
 <%-- 
+    Document   : showuserrequestadminside
+    Created on : Mar 4, 2019, 1:46:42 PM
+    Author     : ITMCS-PC
+--%>
+
+<%@page import="com.brainbox.model.ContectUsModel"%>
+<%@page import="java.util.List"%>
+<%-- 
     Document   : viewtopicadminside
     Created on : Feb 20, 2019, 3:45:52 PM
     Author     : ITMCS-Java
 --%>
 
-<%@page import="java.util.List"%>
-<%@page import="com.brainbox.model.AdminTopic"%>
+<
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,7 +40,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Topic Data</h3>
+              <h3 class="box-title">User Request</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -42,30 +49,30 @@
                 
                   <thead>
                 <tr>
-                  <th>Id</th>
-                 <th>Topic Name</th>
-                  <th> Discription</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                 <th>Id</th>
+                 <th>Name</th>
+                 <th>email</th>
+                 <th>subject</th>
+                 <th>message</th>
+                 <th>uid</th>
+                  
                   
                 </tr>
                 </thead>
                 <tbody>
-                    <% List<AdminTopic> lsttopic=(List<AdminTopic>)request.getAttribute("lsttopic"); 
-                        for(int i=0;i<lsttopic.size();i++){
-                    %>   
+                    <% List<ContectUsModel> lstrequest=(List<ContectUsModel>)request.getAttribute("lstrequest"); 
+                        for(int i= 0;i<lstrequest.size();i++){
+                    %>    
                   
  
         <tr>
             
-            <td><%= lsttopic.get(i).getId() %></td>
-            <td><%= lsttopic.get(i).getTopicname() %></td>
-            <td><%= lsttopic.get(i).getDiscription() %></td>
-            
-            <td><a href="${pageContext.servletContext.contextPath}/edittopic/<%= lsttopic.get(i).getId() %>" style="font-size: 22px"><i class="fa fa-edit"></i></a></td>
-          <td><a href="${pageContext.servletContext.contextPath}/deletetopic/<%= lsttopic.get(i).getId() %>" style="font-size: 22px"><i class="fa fa-trash"></i></a></td>
-            
-            
+            <td><%=  lstrequest.get(i).getReqid() %></td>
+            <td><%=  lstrequest.get(i).getName() %></td>
+            <td><%=  lstrequest.get(i).getEmail() %></td>
+            <td><%=  lstrequest.get(i).getSubject() %></td>
+            <td><%=  lstrequest.get(i).getMessage() %></td>
+            <td><%=  lstrequest.get(i).getUsertable().getUid() %></td>
                     
         </tr>
              

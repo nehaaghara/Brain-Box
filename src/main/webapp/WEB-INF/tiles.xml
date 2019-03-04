@@ -82,6 +82,11 @@ and open the template in the editor.
         <put-attribute name="title" value="BrainBox"></put-attribute>
     </definition>
     
+    <definition name="viewuserrequestadminside" extends="dian.ublosis.default.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/showuserrequestadminside.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    
      <definition name="showyourquestion" extends="dian.ublosis.user.layout">
         <put-attribute name="body" value="/WEB-INF/jsp/view/showyourquestion.jsp"></put-attribute>
         <put-attribute name="title" value="BrainBox"></put-attribute>
@@ -100,5 +105,12 @@ and open the template in the editor.
      <definition name="newlogintiles" template="/WEB-INF/jsp/layout/loginandsignupLayout.jsp">
         
     </definition>
-
+   <definition name="howworkittiles" extends="dian.ublosis.user.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/howworkit.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
+    <definition name="contectustiles" extends="dian.ublosis.user.layout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/contectus.jsp"></put-attribute>
+        <put-attribute name="title" value="BrainBox"></put-attribute>
+    </definition>
 </tiles-definitions> 

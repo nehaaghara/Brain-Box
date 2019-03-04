@@ -8,11 +8,9 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
                 <ul class="top-nav nav-left">
-                    <li><a href="index.html">Home</a>
+                  <li class="hidden-xs"><a href="blog.html">Blog</a>
                     </li>
-                    <li class="hidden-xs"><a href="blog.html">Blog</a>
-                    </li>
-                    <li  class="hidden-xs"><a href="contact.html">Contact Us</a>
+                    <li  class="hidden-xs"><a href="${pageContext.servletContext.contextPath}/contectusindex">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -58,9 +56,7 @@
         <div class="navbar-collapse collapse">
             <!-- right bar -->
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden-sm"><a href="how-work.html">How  It Works</a>
-                </li>
-                <li><a href="listing.html">Browse Questions</a>
+                <li class="hidden-sm"><a href="${pageContext.servletContext.contextPath}/workit">How  It Works</a>
                 </li>
                 <li>
                     <div class="btn-nav"><a href="${pageContext.servletContext.contextPath}/postquestion" class="btn btn-primary btn-small navbar-btn">Post Question</a>

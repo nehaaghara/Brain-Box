@@ -196,7 +196,7 @@ public class indexController {
             e.printStackTrace();
         }
         return mv;
-<<<<<<< HEAD
+
     }  
    
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -209,9 +209,15 @@ public class indexController {
             return "";
         }
     }
-=======
-    } 
-
-  
->>>>>>> 76fadf0827a7766eb97747a49219067bcd50bf4e
+    
+     @RequestMapping(value = "/workit", method = RequestMethod.GET)
+    public String workit() 
+    {
+        return "howworkittiles";
+    }
+ @RequestMapping(value = "/contectusindex", method = RequestMethod.GET)
+    public String contectus() 
+    {
+        return "contectustiles";
+    }
 }

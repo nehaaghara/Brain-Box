@@ -19,9 +19,9 @@
 								<div class="footer-widget about-widget">
 									<h2>Our Addres</h2>
 									<ul class="contact-info">
-										<li><span class="icon fa fa-map-marker"></span> 60 Link Road Lhr. Pakistan 54770</li>
-										<li><span class="icon fa fa-phone"></span> (042) 1234567890</li>
-										<li><span class="icon fa fa-map-marker"></span> contant@scriptsbundle.com</li>
+										<li><span class="icon fa fa-map-marker"></span> 11/127 Netajinagar Meghaninagar</li>
+										<li><span class="icon fa fa-phone"></span> (91+) 8140321630 </li>
+										<li><span class="icon fa fa-map-marker"></span> contant@hinguvikas.com</li>
 										<li><span class="icon fa fa-fax"></span> (042) 1234 7777</li>
 									</ul>
 									<div class="social-links-two clearfix">
@@ -43,15 +43,15 @@
 								<h2>Our Service</h2>
 								<div class="footer-widget links-widget">
 									<ul>
-										<li><a href="#">Web Development</a>
+										<li><a href="#">Ask Question</a>
 										</li>
-										<li><a href="#">Web Designing</a>
+										<li><a href="#">Add your Review</a>
 										</li>
-										<li><a href="#">Android Development</a>
+										<li><a href="#">Achive Your Level</a>
 										</li>
-										<li><a href="#">Theme Development</a>
+										<li><a href="#">Question Answer Like Functionality</a>
 										</li>
-										<li><a href="#">IOS Development</a>
+										<li><a href="#">Blog</a>
 										</li>
 									</ul>
 								</div>
