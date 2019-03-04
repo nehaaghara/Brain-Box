@@ -1,4 +1,12 @@
 <%-- 
+    Document   : yourlevelquestion
+    Created on : Mar 1, 2019, 3:52:14 PM
+    Author     : ITMCS-PC
+--%>
+
+<%@page import="com.brainbox.model.AnswerLikeModel"%>
+<%@page import="com.brainbox.model.QuestionLikeModel"%>
+<%-- 
     Document   : showyouranswer
     Created on : Mar 1, 2019, 11:36:17 AM
     Author     : ITMCS-PC
@@ -30,9 +38,9 @@
                                 </li>
                                 <li> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/yourquestion'"><i class="icofont icon-layers"></i><span class="hidden-xs">Your Question</span></a>
                                 </li>
-                                <li class="active"> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/youranswer'"><i class="icofont icon-global"></i><span class="hidden-xs">Your Answer</span></a> 
+                                <li> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/youranswer'"><i class="icofont icon-global"></i><span class="hidden-xs">Your Answer</span></a> 
                                 </li>
-                                <li> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/yourlevelquestion'"><i class="icofont icon-linegraph"></i><span class="hidden-xs">Your Level Question</span></a> 
+                                <li class="active"> <a data-toggle="tab" onclick="window.location.href = '${pageContext.servletContext.contextPath}/yourlevelquestion'"><i class="icofont icon-linegraph"></i><span class="hidden-xs">Your Level Question</span></a> 
                                 </li>
                             </ul>
                         </div>
@@ -43,16 +51,12 @@
                                 <!-- Question Listing -->
 
                                 <div class="listing-grid">
-                                  <%
-                                    List<Object> lstobject=(List<Object>)request.getAttribute("lstofobject");
-                                    for(int i = 0 ; i < lstobject.size() ; i++)
-                                    {
-                                        if(lstobject.isEmpty())
-                                        {%>
-                                        <h3> Sorry You Have No Data.....</h3>
-                                        <% break; }
-                                  
-                                  %>
+                                    <% List<Map<String,Object>> lstmapobject=(List<Map<String,Object>>)request.getAttribute("lstmapobject"); 
+                                            for(int i = 0 ; i< lstmapobject.size() ; i++)
+                                            {   
+                                             Map<String,Object> map  = lstmapobject.get(i);
+                                             
+                                    %>   
                                     
                                     
                                     <div class="row">
@@ -64,15 +68,25 @@
                                         <form action="recentanscontroller" method="get" >
                                             <input path="qid" type="hidden" name="qid" value="" />    
                                             <div class="col-md-7 col-sm-8  col-xs-12">
-                                               
-                                                <h3><%= lstobject.get(i) %><% i=i+1; %><div class="listing-meta pull-right"> <span></span>  <span> <%= lstobject.get(i) %><% i=i+1; %> Likes</span>
+                                                <% PostQuestionModel question=(PostQuestionModel)map.get("queObject"); %>
+                                                <h3> <%= question.getQtitle() %> <div class="listing-meta pull-right"> <span></span>  <span> <%= map.get("queLikes") %> Likes</span>
                                                        
                                                         <i class="fa fa-thumbs-up" style="color: #bb2026"></i>
                                                  </div></h3>
                                             </div>
                                            <div class="col-md-9 col-sm-8  col-xs-12">
-                                                <hr>
+                                                <h3><a  href="#"> Your Answer </a></h3>
+
+                                                <div class="form-group">
+                                                    <textarea path="answer" name="answer" cols="12" rows="4" class="form-control" placeholder="Write your Answer" /></textarea>
+
+                                                </div>
+                                                <button class="btn btn-primary btn-lg btn-block">Post Your Answer</button>
+                                               
+                                               <hr>
+                                                        <% List<AnswerTable> lstanswer= (List<AnswerTable>)map.get("queWiseAnswer"); %>
                                                               <div class="questionAnswerScroll" style="background-color: white">
+                                                           <% for(int j = 0 ; j < lstanswer.size() ; j++) { %>  
                                                                 <div class="post">
                                                                    <div class="user-block">
                                                                        <img class="img-circle img-bordered-sm" src="webResource/admin/dist/img/avatar5.png" alt="user image">
@@ -84,20 +98,21 @@
                                                                    <!-- /.user-block -->
                                                                    <p style="font-size: 16px;">
                                                                        <font color="black">
-                                                                       <%= lstobject.get(i) %><% i=i+1; %>
+                                                                       <%= lstanswer.get(j).getAnswer() %>
                                                                        </font>
                                                                    </p>
                                                                     <ul class="list-inline">
-                                                                        <li><i class="fa fa-thumbs-up margin-r-5" style="color: #bb2026"></i> <%= lstobject.get(i) %> Likes
+                                                                        <li><i class="fa fa-thumbs-up margin-r-5" style="color: #bb2026"></i><%= lstanswer.get(j).getNo_of_like() %> Likes
                                                                        </li>
                                                                    </ul>
                                                                     </div>
                                                                  <hr>
+                                                               <% } %>
                                                                  </div>
                                                                 </div>
                                         </form>
                                     </div>
-                                            <% } %>
+                                     <% } %>   
                                  </div>
                             </div>
                         </div>

@@ -43,6 +43,12 @@ public class UserTable implements Serializable {
     @Column(name="email")
     String email;
     
+    @Column(name="queAskLevel")
+    BigInteger queAskLevel;
+    
+    @Column(name="expAnsLevel")
+    BigInteger expAnsLevel;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleFK")
     UserRole userrole;
@@ -54,10 +60,6 @@ public class UserTable implements Serializable {
     public void setUserrole(UserRole userrole) {
         this.userrole = userrole;
     }
-   
-    
-    
-
     public String getConformpassword() {
         return conformpassword;
     }
@@ -98,6 +100,22 @@ public class UserTable implements Serializable {
 
     public void setUid(BigInteger uid) {
         this.uid = uid;
+    }
+    
+     public BigInteger getQueAskLevel() {
+        return queAskLevel;
+    }
+
+    public void setQueAskLevel(BigInteger queAskLevel) {
+        this.queAskLevel = queAskLevel;
+    }
+
+    public BigInteger getExpAnsLevel() {
+        return expAnsLevel;
+    }
+
+    public void setExpAnsLevel(BigInteger expAnsLevel) {
+        this.expAnsLevel = expAnsLevel;
     }
     
     
