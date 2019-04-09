@@ -64,24 +64,26 @@
                                     <div class="row">
                                         <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
                                             <a data-toggle="tooltip" data-placement="bottom" data-original-title="Martina Jaz" href="#">
-                                                <img alt="" class="img-responsive center-block img-circle" src="${pageContext.servletContext.contextPath}/webResource/user/images/avtar.jpg">
+                                                <img alt="user image" class="img-responsive center-block img-circle" src="${pageContext.servletContext.contextPath}/webResource/user/images/avtar.jpg">
                                             </a>
                                             <h5><center> <font color="#3c8dbc"><%=lstuser.get(0).getUsername().toUpperCase()%></font></center></h5>
                                         </div>
                                         <% PostQuestionModel question = (PostQuestionModel) map.get("queObject");%>
                                         <form action="recentanscontroller" method="get" >
                                             <input path="qid" type="hidden" name="qid" value="<%= question.getId()%>" />    
-                                            <div class="col-md-7 col-sm-8  col-xs-12">
-
-                                                <h3> <%= question.getQtitle()%> <div class="listing-meta pull-right">
-                                                        <% if (null != map.get("user") && (boolean) map.get("user")) {%>
-                                                        <a  href ="dislikequestion/<%= user%>/<%= question.getId()%>/yourlevel"><i class="fa fa-thumbs-up" style="color: #bb2026"></i></a> <span><%= map.get("queLikes")%> Likes</span>
-                                                            <% } else {%>
-                                                        <a href="likequestion/<%= question.getId()%>/yourlevel"><i class="fa fa-thumbs-o-up"></i></a> <span><%=map.get("queLikes")%> Likes</span>
-                                                            <% } %>
-
-                                                    </div></h3>
+                                            <div class="col-md-7 col-sm-12  col-xs-12">
+                                                <h3> <%= question.getQtitle()%> </h3>
+                                                <div style="height: 5%"></div>
                                             </div>
+                                            <div class="col-md-3 col-sm-12  col-xs-12">
+                                                <% if (null != map.get("user") && (boolean) map.get("user")) {%>
+                                                <a  href ="dislikequestion/<%= user%>/<%= question.getId()%>/yourlevel"><i class="fa fa-thumbs-up" style="color: #bb2026"></i></a> <span><%= map.get("queLikes")%> Likes</span>
+                                                    <% } else {%>
+                                                <a href="likequestion/<%= question.getId()%>/yourlevel"><i class="fa fa-thumbs-o-up"></i></a> <span><%=map.get("queLikes")%> Likes</span>
+                                                    <% } %>
+
+                                            </div>
+
                                             <div class="col-md-9 col-sm-8  col-xs-12">
                                                 <h3><a  href="#"> Your Answer </a></h3>
 
@@ -93,7 +95,8 @@
 
                                                 <hr>
                                                 <% List<AnswerTable> lstanswer = (List<AnswerTable>) map.get("queWiseAnswer");
-                                                   %>
+                                                %>
+                                                <%if(lstanswer.size()>0){ %>
                                                 <div class="questionAnswerScroll" style="background-color: white">
                                                     <% for (int j = 0; j < lstanswer.size(); j++) {%>  
                                                     <div class="post">
@@ -121,8 +124,15 @@
                                                         </ul>
                                                     </div>
                                                     <hr>
-                                                    <% } %>
+                                                    <% }
+                                                   %>
+                                                   
+                                                </div> <% }else{ %>
+                                                <div style="height: 5%">
+                                                <b style="font-size: 16px; color: #bb2026">Sorry...You have no answer for the above question Right Now....</b>
                                                 </div>
+                                                <hr>
+                                                <% } %>
                                             </div>
                                         </form>
                                     </div>

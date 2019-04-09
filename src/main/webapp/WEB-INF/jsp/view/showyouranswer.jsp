@@ -58,18 +58,19 @@
                                     <div class="row">
                                         <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
                                             <a data-toggle="tooltip" data-placement="bottom" data-original-title="Martina Jaz" href="#">
-                                                <img alt="" class="img-responsive center-block" src="${pageContext.servletContext.contextPath}/webResource/user/images/authors/1.jpg">
+                                                <img alt="" class="img-responsive center-block" src="${pageContext.servletContext.contextPath}/webResource/user/images/avtar.jpg">
                                             </a>
                                         </div>
                                         <form action="recentanscontroller" method="get" >
                                             <input path="qid" type="hidden" name="qid" value="" />    
-                                            <div class="col-md-7 col-sm-8  col-xs-12">
-                                               
-                                                <h3><%= lstobject.get(i) %><% i=i+1; %><div class="listing-meta pull-right"> <span></span>  <span> <%= lstobject.get(i) %><% i=i+1; %> Likes</span>
-                                                       
-                                                        <i class="fa fa-thumbs-up" style="color: #bb2026"></i>
-                                                 </div></h3>
+                                            <div class="col-md-7 col-sm-12  col-xs-12">
+                                                 <h3><%= lstobject.get(i) %><% i=i+1; %>
+                                                    </h3>
                                             </div>
+                                                 <div class="col-md-3 col-sm-12  col-xs-12"><span> <%= lstobject.get(i) %><% i=i+1; %> Likes</span>
+                                                        <i class="fa fa-thumbs-up" style="color: #bb2026"></i>
+                                                 </div>
+                                          
                                            <div class="col-md-9 col-sm-8  col-xs-12">
                                                 <hr>
                                                               <div class="questionAnswerScroll" style="background-color: white">
