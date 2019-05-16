@@ -65,7 +65,7 @@ public class Authentication {
             if(user.getUserrole().getRolepk().equals(new BigInteger("1"))){                
                 mv.setViewName("dian.ublosis.index");
             }else if(user.getUserrole().getRolepk().equals(new BigInteger("2"))){
-                mv.setViewName("redirect:/showrecent");
+                mv.setViewName("dian.user.index");
            }else if(user.getUserrole().getRolepk().equals(new BigInteger("3"))){
                 mv.setViewName("dian.user.index");
            }
